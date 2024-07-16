@@ -29,10 +29,10 @@ import { Configuration } from '../configuration/configuration';
     ProductsModule
   ],
   providers: [
-    {
-      provide: APP_FILTER,
-      useClass: AppExceptionFilter
-    },
+    // {
+    //   provide: APP_FILTER,
+    //   useClass: AppExceptionFilter
+    // },
 
     {
       provide: APP_PIPE,

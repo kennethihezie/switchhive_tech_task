@@ -1,8 +1,6 @@
 import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { User } from '../users/model/entity/user.entity';
 import { CreateUserDto } from '../users/model/dto/create-user.dto';
 import { Helpers } from 'src/common/utils/helpers';

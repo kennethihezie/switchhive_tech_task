@@ -1,12 +1,12 @@
 import { Product } from "src/modules/products/model/entity/product.entity";
-import { AfterInsert, AfterRemove, AfterUpdate, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('user')
 export class User {
     @PrimaryGeneratedColumn()
     id: string
 
-    @Column()
+    @Column({ unique: true })
     email: string
 
     @Column()
@@ -19,11 +19,11 @@ export class User {
     refreshToken?: string
 
     @OneToMany(() => Product, product => product.user, { cascade: true })
-    products: Product[];
+    products: Product[]
 
-    // @CreateDateColumn({ type: 'timestamptz' })
-    // createdAt: Date
+    @CreateDateColumn({ type: 'timestamptz' })
+    createdAt: Date
 
-    // @UpdateDateColumn({ type: 'timestamptz' })
-    // updatedAt: Date
-}
+    @UpdateDateColumn({ type: 'timestamptz' })
+    updatedAt: Date
+} 

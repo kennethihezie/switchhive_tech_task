@@ -1,4 +1,3 @@
-
 import { User } from "src/modules/users/model/entity/user.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -23,11 +22,11 @@ export class Product {
     imageUrl: string
 
     @ManyToOne(() => User, user => user.products)
-    user: User;
+    user: User
 
-    // @CreateDateColumn({ type: 'timestamptz' })
-    // createdAt: Date;
+    @CreateDateColumn({ type: 'timestamptz' })
+    createdAt: Date
 
-    // @UpdateDateColumn({ type: 'timestamptz' })
-    // updatedAt: Date; 
+    @UpdateDateColumn({ type: 'timestamptz' })
+    updatedAt: Date
 }
