@@ -20,7 +20,7 @@ import { Configuration } from '../configuration/configuration';
       imports: [ ConfigurationModule ],
       inject: [ Configuration ],
       useFactory: (config: Configuration) => {      
-        return config.env.database as TypeOrmModuleOptions
+        return config.env.database
       }
     }), 
 
@@ -29,10 +29,10 @@ import { Configuration } from '../configuration/configuration';
     ProductsModule
   ],
   providers: [
-    // {
-    //   provide: APP_FILTER,
-    //   useClass: AppExceptionFilter
-    // },
+    {
+      provide: APP_FILTER,
+      useClass: AppExceptionFilter
+    },
 
     {
       provide: APP_PIPE,

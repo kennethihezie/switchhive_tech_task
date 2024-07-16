@@ -60,21 +60,6 @@ describe('UsersService', () => {
     });
   });
 
-  describe('findUserWithProducts', () => {
-    it('should return a user with products by userId', async () => {
-      const userId = '1';
-      const user = { id: userId, email: 'test@example.com', password: 'password', products: [] };
-
-      repository.findOne.mockResolvedValue(user);
-
-      expect(await service.findUserWithProducts(userId)).toEqual(user);
-      expect(repository.findOne).toHaveBeenCalledWith({
-        where: { id: userId },
-        relations: ['products'],
-      });
-    });
-  });
-
   describe('getUserByEmail', () => {
     it('should return a user by email', async () => {
       const email = 'test@example.com';
@@ -101,6 +86,7 @@ describe('UsersService', () => {
       expect(repository.findOneBy).toHaveBeenCalledWith({ id });
       expect(repository.save).toHaveBeenCalledWith(updatedUser);
     });
+  })
 
     it('should throw a NotFoundException if user does not exist', async () => {
       const id = '1';
@@ -111,5 +97,4 @@ describe('UsersService', () => {
       await expect(service.updateUser(id, dto)).rejects.toThrow(NotFoundException);
       expect(repository.findOneBy).toHaveBeenCalledWith({ id });
     });
-  });
 });

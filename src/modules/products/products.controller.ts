@@ -1,11 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './model/dto/create-product.dto';
-import { ResponseMessage } from 'src/common/decorators/response_message.decorator';
-import { AppMessages } from 'src/common/constants/app_messages';
+import { ResponseMessage } from '../../common/decorators/response_message.decorator';
+import { AppMessages } from '../../common/constants/app_messages';
 import { AccessTokenGuard } from '../auth/guard/access_token.guard';
 import { UpdateProductDto } from './model/dto/update-product.dto';
-import { CurrentUser } from 'src/common/decorators/current_user.decorator';
+import { CurrentUser } from '../../common/decorators/current_user.decorator';
 import { User } from '../users/model/entity/user.entity';
 
 

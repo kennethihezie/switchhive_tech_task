@@ -20,7 +20,6 @@ export class ProductsService {
          throw new NotFoundException('Product not found')
         }
  
-        //copies attrs to user
         Object.assign(product, dto)
  
         return await this.repository.save(product)

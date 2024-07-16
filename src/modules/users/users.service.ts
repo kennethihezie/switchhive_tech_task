@@ -19,13 +19,6 @@ export class UsersService {
         return user
     }
 
-    async findUserWithProducts(userId: string): Promise<User> {
-        return this.repository.findOne({
-            where: { id: userId },
-            relations: ['products'],
-        });
-    }
-
     async getUserByEmail(email: string): Promise<User> {
         return await this.repository.findOne({ where: { email }})
     }

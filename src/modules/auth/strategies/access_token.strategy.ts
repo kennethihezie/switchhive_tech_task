@@ -11,7 +11,6 @@ type JwtPayload = {
 }
 
 // Defines a Strategy for AccessTokenStrategy
-
 @Injectable()
 export class AccessTokenStrategy extends PassportStrategy(Strategy, 'jwt') {
     constructor(private readonly usersService: UsersService, private readonly config: Configuration) {

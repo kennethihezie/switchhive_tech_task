@@ -12,10 +12,6 @@ export class Configuration {
             name: this.service.get<string>('APP_NAME')
         },
         database: {
-            // type: 'sqlite',
-            // synchronize: true,
-            // autoLoadEntities: true,
-            // database: 'db.sqlite'
             type: 'postgres',
             host: this.service.get<string>('DB_HOST'),
             port: +this.service.get<string>('DB_PORT'),

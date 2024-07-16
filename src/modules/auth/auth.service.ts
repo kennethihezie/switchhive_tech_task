@@ -3,12 +3,13 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { User } from '../users/model/entity/user.entity';
 import { CreateUserDto } from '../users/model/dto/create-user.dto';
-import { Helpers } from 'src/common/utils/helpers';
+import { Helpers } from '../../common/utils/helpers';
 import { LoginDto } from './model/dto/login.dto';
+import { Configuration } from '../configuration/configuration';
 
 @Injectable()
 export class AuthService {
-    constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService) {}
+    constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService, private config: Configuration) {}
    
     async signUp(dto: CreateUserDto) {
         const hashedPassword = await Helpers.hashData(dto.password)
@@ -17,11 +18,9 @@ export class AuthService {
             password: hashedPassword,
         })
 
-        const tokens = await this.getTokens(newUser.id, newUser.email)
-        
-        await this.updateTokens(newUser.id, tokens.accessToken, tokens.refreshToken)
+        const { accessToken, refreshToken} = await this.updateTokens(newUser)
 
-        return { tokens }
+        return { tokens: { accessToken, refreshToken } }
     }
 
 
@@ -38,10 +37,9 @@ export class AuthService {
             throw new BadRequestException('Password is incorrect')
         }
 
-        const tokens = await this.getTokens(existingUser.id, existingUser.email)
-        const user = await this.updateTokens(existingUser.id, tokens.accessToken, tokens.refreshToken)
+        const { user, accessToken, refreshToken} = await this.updateTokens(existingUser)
 
-        return { user, tokens }
+        return { user, tokens: { accessToken, refreshToken } }
     }
 
     async refreshToken(user: User) {
@@ -49,42 +47,40 @@ export class AuthService {
             throw new ForbiddenException('Unauthorised access')
         }
 
-        const { accessToken, refreshToken } = await this.getTokens(user.id, user.email)
-        await this.updateTokens(user.id, accessToken, refreshToken)
+        const { accessToken } = await this.updateTokens(user)
 
         return { accessToken }
     }
 
-    private async updateTokens(userId: string, accessToken: string, refreshToken: string): Promise<User> {
-       return await this.usersService.updateUser(userId, { accessToken: accessToken, refreshToken: refreshToken })
-    }
 
-    private async getTokens(userId: string, email: string) {
+
+    async updateTokens(data: User) {
         const [ accessToken, refreshToken ] = await Promise.all([
             this.jwtService.signAsync(
                 {
-                    sub: userId,
-                    email,
+                    sub: data.id,
+                    email: data.email,
                 },
                 {
-                    secret: process.env.JWT_SECRET,
-                    expiresIn: '3d'
+                    secret: this.config.env.jwt.jwtSecret,
+                    expiresIn: '1d'
                 }
             ),
 
             this.jwtService.signAsync(
                 {
-                    sub: userId,
-                    email,
+                    sub: data.id,
+                    email: data.email,
                 },
                 {
-                    secret: process.env.JWT_REFRESH_SECRET,
+                    secret: this.config.env.jwt.jwtRefreshSecret,
                     expiresIn: '7d',
                 }
             )
         ])
 
-        return { accessToken, refreshToken }
-    } 
+        const user = await this.usersService.updateUser(data.id, { accessToken, refreshToken })
 
+        return { user, accessToken, refreshToken }
+    }
 }
