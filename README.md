@@ -39,7 +39,7 @@ Switchhive Product Management is a comprehensive product management application 
  - **Programming Lanaguage:** Typescript
 
 ## Postman Documentation
-Refer to the [Postman Documentation](https://documenter.getpostman.com/view/11996278/2sA3QmCu5h) for detailed API information.
+Refer to the [Postman Documentation](https://documenter.getpostman.com/view/11996278/2sA3kRJPck) for detailed API information.
 
 
 ## Installation
