@@ -12,7 +12,7 @@ export class User {
     @Column()
     password: string
 
-    @Column({ nullable: true })
+    @Column({ nullable: false })
     accessToken?: string
 
     @Column({ nullable: true })

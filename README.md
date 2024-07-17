@@ -99,6 +99,19 @@ $ docker compose up
 $ yarn run test
 ```
 
+## Migrations
+
+```bash
+# generate migration file
+$ yarn migration:generate
+
+# run migrations
+$ yarn migration:run
+
+# revert migrations
+$ yarn migration:revert
+```
+
 
 ## Stay in touch
 

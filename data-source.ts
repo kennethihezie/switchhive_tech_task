@@ -13,3 +13,14 @@ export const AppDataSource = new DataSource({
   entities: [User, Product], // add your entities here
   migrations: ['src/migrations/*.ts'],
 });
+
+// export const AppDataSource = new DataSource({
+//   type: 'postgres',
+//   host: 'db',
+//   port: 5432,
+//   username: 'switchhive_user',
+//   password: 'switchhive_password_$',
+//   database: 'switchhive_db',
+//   entities: [User, Product], // add your entities here
+//   migrations: ['src/migrations/*.ts'],
+// });
