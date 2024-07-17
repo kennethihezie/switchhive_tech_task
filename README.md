@@ -57,6 +57,10 @@ $ cd switchhive_tech_task
 $ yarn install
 ```
 
+## Docker Installion
+Ensure Docker is installed on your system. If Docker is not installed, refer to the: [Official Website](https://docs.docker.com/) for instructions.
+
+
 ## Add .env to the Root of the Project
 Create a `.env` file in the root directory with the following keys:
 
