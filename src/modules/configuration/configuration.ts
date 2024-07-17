@@ -19,7 +19,11 @@ export class Configuration {
             password: this.service.get<string>('DB_PASSWORD'),
             database: this.service.get<string>('DB_NAME'),
             autoLoadEntities: true,
-            synchronize: true
+            synchronize: false,
+            migrations: ['dist/migrations/*{.ts,.js}'],
+            cli: {
+                migrationsDir: 'src/migrations',
+            },
         } as TypeOrmModuleOptions,
         jwt: {
             jwtSecret: this.service.get<string>('JWT_SECRET'),
