@@ -6,4 +6,10 @@ export class UserResponseDto {
 
     @Expose()
     email: string
+
+    @Expose()
+    createdAt: Date
+
+    @Expose()
+    updatedAt: Date
 }
