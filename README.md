@@ -1,48 +1,91 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Switchhive Task Management
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Switchhive Product Management is a comprehensive product management application offering robust features for user authentication and product management via REST APIs.
 
-## Description
+## Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### User Authentication APIs
+ - **Register New Users:** Create new user accounts.
+ 
+ - **Login and Manage Sessions:** Securely authenticate and manage user sessions. The access token expires in 1 day, while the refresh token remains valid for 7 days
+
+### Product Management APIs
+ - **Product Creation:** Add new products to the system.
+
+ - **Update Products:** Modify existing Products.
+
+ - **Get Single Product:** Retrieve details of a specific product.
+
+ - **Get All Products:** List all Products.
+
+ - **Get Products by UserId:** Fetch Products categorized by userId.
+
+ - **Delete Products:** Remove Products from the system.
+
+
+## Security and Additional Features
+
+ - **Prevent Multiple Sign-ins:** Added a security layer to prevent multiple sign-ins from different devices.
+ - **JWT Token and Refresh Token:** Secure authentication using JWT and refresh tokens.
+
+
+## Tools
+
+ - **Backend Framework:** Nestjs
+ - **Devops:** Docker
+ - **Database:** Postgres
+ - **Programming Lanaguage:** Typescript
+
+## Postman Documentation
+Refer to the [Postman Documentation](https://documenter.getpostman.com/view/11996278/2sA3QmCu5h) for detailed API information.
+
 
 ## Installation
+
+### Clone the GitHub Repository
+
+```bash
+$ git clone https://github.com/kennethihezie/switchhive_tech_task.git
+$ cd switchhive_tech_task
+```
+
+## Install Project Dependencies
 
 ```bash
 $ yarn install
 ```
 
+## Add .env to the Root of the Project
+Create a `.env` file in the root directory with the following keys:
+
+```bash
+DB_NAME='switchhive_db'
+DB_USER_NAME='switchhive_user'
+DB_PASSWORD='switchhive_password_$'
+DB_PORT=5432
+DB_HOST='db'
+JWT_SECRET='hL+32sdNFWjr/Tkviwfwznxce1JQuG52gawIC6P4boM2xxvQpCi0VoIguDVdiGdacvTkv/mnbqvoz6AEKGTIwU8Mpxay+UtC3TmsZxHFz5mWn7P3VhPC+DlRV74eJzI0SX0K5TQcVBpbEfnubUDadSSBgQGOKJs1fZOO4roUMdDnWFucWgtLZ0rid3m9yQu+HufmYqCpBsZjPTT73VRtbjQUWhZ2DQl75057TecQGpfM2yK7XUdSHjB5tU62dEk0l2cvpP8Bwk+jNGKbwvpWyzCdotkwMhlzFa85uzSy/JfXtWwEVvPGn78PJ0hxQSmEWT6UZ2usyGGbgnsSkVWAxw=='
+JWT_REFRESH_SECRET = 'K/ezIHSQvw/KMtU0d9GcuMgQYhYEgz5y++ZSgDJxWWWLj5Ryu4xmcqi6OagcMMKK8PZqzNtVz4as9qCCDh2n3Ajfhh5Hr54HyFAbfpOSfrPpm6ztL3zr4Mbl3EVLUtqN+2Oc9EApp3xguMmWzIpu4d6YaMp513FQ/WVZpWeJWeImbXY6znnc/dvvquFx5Q48IDCIkYk6RlhV1v5Vv+oGdtKqDaGFh/J9t5tPcXdZFcHq1x0JkCm3WJzEbhxfd3DukwVGIeU+70/PAdp3iVVnY8Z4//5EE507HLbOzCXVEIaqmA6QHFbSLzg0VE5B6BkR0DyZ8CzQdwL+EBDtHh6ONw=='
+```
+ 
+ # Usage
+
 ## Running the app
 
 ```bash
-# development
-$ yarn run start
+# build and run the app in background
+$ docker compose up -d --build
 
-# watch mode
-$ yarn run start:dev
+# build and run the app in foreground
+$ docker compose up --build
 
-# production mode
-$ yarn run start:prod
+# run the app in background
+$ docker compose up -d
+
+# run the app in foreground
+$ docker compose up
 ```
 
 ## Test
@@ -50,26 +93,14 @@ $ yarn run start:prod
 ```bash
 # unit tests
 $ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Collins Kenneth Ihezie](https://github.com/kennethihezie/)
+- Email - [collinsihezie6@gmail.com](mailto://collinsihezie6@gmail.com)
 
 ## License
 
 Nest is [MIT licensed](LICENSE).
-
-# docker compose up -d --build
